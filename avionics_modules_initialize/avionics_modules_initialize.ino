@@ -21,14 +21,16 @@ Serial.begin(115200);
 Wire.begin();   
   
 //For mpu6050
-MPU6050 mpu6050;
-void setup() 
-{
-         
-  delay(1500);  
-  mpu6050.initialize();  
-  delay(2); 
-}
+  Serial.println("Accelerometer Check...");
+  if(!accelerometer.begin()){
+    Serial.println("Accelerometer not found...");
+    while (1) {
+      delay(2000);
+    }
+  }
+  
+  Serial.println("Accelerometer OK...");
+
 //For BMP 180
 void setup() {
   bool success = bmp180.begin();
