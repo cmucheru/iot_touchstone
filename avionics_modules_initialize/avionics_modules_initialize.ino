@@ -1,7 +1,3 @@
-//17th Mar 2022
-//Objectives: To initialize esp32 mcu, bmp180, gps module a mpu6050 module.
-
-
 #include <Wire.h> //For communication over I2C
 #include "i2cdev.h"
 #include <MPU6050.h>
@@ -18,13 +14,14 @@
 // wifi_station_set_config(&stationConfig);
 //}
 
+void initializeComponents(){
 //For mpu6050
 MPU6050 mpu6050;
 
 void setup() 
 {
   Wire.begin();     
-  Serial.begin(9600);        
+  Serial.begin(115200);        
   delay(1500);  
   mpu6050.initialize();  
   delay(2); 
@@ -32,7 +29,7 @@ void setup()
 
 //For BMP 180
 void setup() {
-  Serial.begin(9600);
+  Serial.begin(115200);
   bool success = bmp180.begin();
 
   if (success) {
@@ -47,4 +44,5 @@ void setup(){
     Serial.println("Failed to initialize GPS!");
     while (1);
   }
+}
 }
