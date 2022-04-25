@@ -5,6 +5,8 @@
 #include <Arduino_MKRGPS.h> //For gps lib
 #include "i2c_scanner.h" //To scan the module
 
+void initializeComponents();
+
 //Initializing esp32 for WiFi Connections
 //void initDone() {
 // wifi_set_opmode_current(STATION_MODE);
@@ -15,28 +17,25 @@
 //}
 
 void initializeComponents(){
+Serial.begin(115200);  
+Wire.begin();   
+  
 //For mpu6050
 MPU6050 mpu6050;
-
 void setup() 
 {
-  Wire.begin();     
-  Serial.begin(115200);        
+         
   delay(1500);  
   mpu6050.initialize();  
   delay(2); 
 }
-
 //For BMP 180
 void setup() {
-  Serial.begin(115200);
   bool success = bmp180.begin();
-
-  if (success) {
-    Serial.println("BMP180 init success");
+    if (success) {
+    Serial.println("BMP180 initialization success ...");
   }
 }
-
 //For GPS module
 void setup(){
   GPS.begin(GPS_MODE_I2C);
@@ -44,5 +43,5 @@ void setup(){
     Serial.println("Failed to initialize GPS!");
     while (1);
   }
-}
+ }
 }
