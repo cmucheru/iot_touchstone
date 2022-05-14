@@ -20,7 +20,7 @@ void initializeComponents(){
 Serial.begin(115200);  
 Wire.begin();   
   
-//For mpu6050
+//MPU6050 init
   Serial.println("Accelerometer Check...");
   if(!accelerometer.begin()){
     Serial.println("Accelerometer not found...");
@@ -31,14 +31,14 @@ Wire.begin();
   
   Serial.println("Accelerometer OK...");
 
-//For BMP 180
+//BMP180 init
 void setup() {
   bool success = bmp180.begin();
     if (success) {
     Serial.println("BMP180 initialization success ...");
   }
 }
-//For GPS module
+//GPS module init
 void setup(){
   GPS.begin(GPS_MODE_I2C);
    if (!GPS.begin()) {
