@@ -3,8 +3,9 @@
 
 SFE_BMP180 bmp180;
 
+//BMP180 init
 void setup() {
-  Serial.begin(9600);
+  Serial.begin(115200);
   bool success = bmp180.begin();
 
   if (success) {
